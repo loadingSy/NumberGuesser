@@ -22,13 +22,15 @@ struct saveData
     int pointsDiscountMultiplier = 1;
     int chosenAttempts = 10;
     int guessRange = 30;
+    int maxAttempts = 10;
 };
 
 saveData tempRunningSaveData;
 
 float basePenaltyValue = 5;
 int minGuessRange = 10;
-int attempts = 10;
+int saveVersion = 1;
+
 int lastDistance = -1;
 bool gamePlayInProggress = true;
 string fileName = "saveFile.txt";
@@ -76,7 +78,7 @@ void gameLoop()
     lastDistance = -1;
     int currentAttempts = tempRunningSaveData.chosenAttempts;
     cout << "Starting Game with:\n"
-    << tempRunningSaveData.chosenAttempts << " attempts\n"
+    << tempRunningSaveData.chosenAttempts << " tempRunningSaveData.maxAttempts\n"
     << "0-" << tempRunningSaveData.guessRange << " range\n";
     bool continuePlaying = true;
     bool answeredCorrectly = false;
@@ -200,7 +202,7 @@ void settingsMenu()
     while(true)
     {
         cout << "\nSettings\n"
-        <<"1. Attempts\n"
+        <<"1. tempRunningSaveData.maxAttempts\n"
         <<"2. Range\n";
         string playerInput;
         cin >> playerInput;
@@ -211,7 +213,7 @@ void settingsMenu()
             switch (validatedInput) 
             {
                 case 1:
-                    cout << "\nEnter Attempts Amount (max " << attempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
+                    cout << "\nEnter tempRunningSaveData.maxAttempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
                     playerInput = "";
                     cin >> playerInput;
                     validatedInput = validateToString(playerInput);
@@ -220,10 +222,10 @@ void settingsMenu()
                         cout << "\nInvalid input!\n";
                         continue;
                     }
-                    if(validatedInput > attempts)
+                    if(validatedInput > tempRunningSaveData.maxAttempts)
                     {
-                        cout << "\nExceeded max of " << attempts << " Setting to " << attempts << "\n";
-                        validatedInput = attempts;
+                        cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
+                        validatedInput = tempRunningSaveData.maxAttempts;
                     }
 
                         cout << "\nSet to: " << validatedInput << " Successfully!\n";
@@ -276,6 +278,7 @@ void statsMenu()
     "Points Gain Multiplier: " << tempRunningSaveData.pointsGainMultiplier << "\n" <<
     "Points Discount Multiplier: " << tempRunningSaveData.pointsDiscountMultiplier << "\n" <<
     "Chosen Attempts: " << tempRunningSaveData.chosenAttempts << "\n" <<
+    "Max Attempts" << tempRunningSaveData.maxAttempts << "\n" <<
     "Guess Range: 0-" << tempRunningSaveData.guessRange << "\n" <<
     "\n5. To reset: ";
     string playerInput;
@@ -289,10 +292,9 @@ void statsMenu()
         cin >> playerInput;
         if(playerInput == "fffddd")
         {
-            ofstream file(fileName);
-            file.trunc;
-            file.close();
-            loadSaveData(fileName, tempRunningSaveData);
+            tempRunningSaveData = saveData();
+            saveTempData(fileName, tempRunningSaveData);
+            cout << "\n Reset Successfully!";
             cout << "\n Reset Succesfully!";
         }
     }
@@ -418,22 +420,23 @@ int randomInRange(int min, int max)
 
 bool loadSaveData(const string& fileName, saveData& data)
 {
-    ifstream file(fileName);
+    ifstream file(fileName, ios::binary);
 
     if(!file.is_open()) return false;
 
-    file >> data.gameLoopsPlayed;
-    file >> data.failedGuessAttempts;
-    file >> data.successfullGuessAttempts;
-    file >> data.timesWon;
-    file >> data.timesLost;
-    file >> data.dumbInputs;
-    file >> data.points;
-    file >> data.pointsGainMultiplier;
-    file >> data.pointsDiscountMultiplier;
-    file >> data.chosenAttempts;
-    file >> data.guessRange;
+    int loadedVersion = 0;
+    file.read(reinterpret_cast<char*>(&loadedVersion), sizeof(loadedVersion));
     
+    if(loadedVersion != saveVersion)
+    {
+        cout << "Outdated save file detected! Resetting to defaults.\n";
+        data = saveData(); // Reset the struct to 0/defaults
+        file.close();
+        return false;
+    }
+    
+    file.read(reinterpret_cast<char*>(&data), sizeof(data));
+
 
     file.close();
     return true;
@@ -441,21 +444,15 @@ bool loadSaveData(const string& fileName, saveData& data)
 
 bool saveTempData(const string& fileName, const saveData& data)
 {
-    ofstream file(fileName);
+    ofstream file(fileName, ios::binary);
 
     if(!file.is_open()) return false;
 
-    file << data.gameLoopsPlayed << "\n";
-    file << data.failedGuessAttempts << "\n";
-    file << data.successfullGuessAttempts << "\n";
-    file << data.timesWon << "\n";
-    file << data.timesLost << "\n";
-    file << data.dumbInputs << "\n";
-    file << data.points << "\n";
-    file << data.pointsGainMultiplier << "\n";
-    file << data.pointsDiscountMultiplier << "\n";
-    file << data.chosenAttempts << "\n";
-    file << data.guessRange << "\n";
+    
+    file.write(reinterpret_cast<const char*>(&saveVersion), sizeof(saveVersion));
+    file.write(reinterpret_cast<const char*>(&data), sizeof(data));
+
+
     
     file.close();
     return true;
