@@ -6,30 +6,18 @@
 #include <stdexcept>
 #include <string>
 #include <random>
+#include "Shop.h"
+#include "SaveLoad.h"
 
 using namespace std;
 
-struct saveData
-{
-    int gameLoopsPlayed = 0;
-    int failedGuessAttempts = 0;
-    int successfullGuessAttempts = 0;
-    int timesWon = 0;
-    int timesLost = 0;
-    int dumbInputs = 0;
-    int points = 0;
-    int pointsGainMultiplier = 1;
-    int pointsDiscountMultiplier = 1;
-    int chosenAttempts = 10;
-    int guessRange = 30;
-    int maxAttempts = 10;
-};
+
 
 saveData tempRunningSaveData;
 
 float basePenaltyValue = 5;
 int minGuessRange = 10;
-int saveVersion = 1;
+
 
 int lastDistance = -1;
 bool gamePlayInProggress = true;
@@ -68,6 +56,7 @@ int main()
         }
         
     }
+    intializeShop(tempRunningSaveData);
     cout << "Press Enter to start: ";
     cin.get();
     mainMenu();
@@ -116,8 +105,9 @@ void mainMenu()
     {
         cout << "\nMain Menu\n"
         <<"1. Play\n"
-        <<"2. Settings\n"
-        <<"3. Check Stats\n";
+        <<"2. Shop\n"
+        <<"3. Settings\n"
+        <<"4. Check Stats\n";
         string userInput;
         cin >> userInput;
         int validatedUserInput = validateInput(userInput);
@@ -136,12 +126,16 @@ void mainMenuPanelTriggers(int stateId)
         case 1:
         gameLoop();
         break;
-        
+
         case 2:
+        openShop(tempRunningSaveData.points);
+        break;
+        
+        case 3:
         settingsMenu();
         break;
 
-        case 3:
+        case 4:
         statsMenu();
         break;
 
@@ -202,7 +196,7 @@ void settingsMenu()
     while(true)
     {
         cout << "\nSettings\n"
-        <<"1. tempRunningSaveData.maxAttempts\n"
+        <<"1. Attempts\n"
         <<"2. Range\n";
         string playerInput;
         cin >> playerInput;
@@ -213,7 +207,7 @@ void settingsMenu()
             switch (validatedInput) 
             {
                 case 1:
-                    cout << "\nEnter tempRunningSaveData.maxAttempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
+                    cout << "\nEnter Attempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
                     playerInput = "";
                     cin >> playerInput;
                     validatedInput = validateToString(playerInput);
@@ -295,7 +289,6 @@ void statsMenu()
             tempRunningSaveData = saveData();
             saveTempData(fileName, tempRunningSaveData);
             cout << "\n Reset Successfully!";
-            cout << "\n Reset Succesfully!";
         }
     }
     cout << "\nPress Enter to return to menu ";
@@ -410,6 +403,12 @@ void endGame(bool victory, int rightAnswer)
     saveTempData(fileName, tempRunningSaveData);
 }
 
+void shopMenu()
+{
+    cout << "\nShop\n";
+    //cout <<
+}
+
 int randomInRange(int min, int max)
 {
     random_device dev;
@@ -418,42 +417,3 @@ int randomInRange(int min, int max)
     return dist6(rng);
 }
 
-bool loadSaveData(const string& fileName, saveData& data)
-{
-    ifstream file(fileName, ios::binary);
-
-    if(!file.is_open()) return false;
-
-    int loadedVersion = 0;
-    file.read(reinterpret_cast<char*>(&loadedVersion), sizeof(loadedVersion));
-    
-    if(loadedVersion != saveVersion)
-    {
-        cout << "Outdated save file detected! Resetting to defaults.\n";
-        data = saveData(); // Reset the struct to 0/defaults
-        file.close();
-        return false;
-    }
-    
-    file.read(reinterpret_cast<char*>(&data), sizeof(data));
-
-
-    file.close();
-    return true;
-}
-
-bool saveTempData(const string& fileName, const saveData& data)
-{
-    ofstream file(fileName, ios::binary);
-
-    if(!file.is_open()) return false;
-
-    
-    file.write(reinterpret_cast<const char*>(&saveVersion), sizeof(saveVersion));
-    file.write(reinterpret_cast<const char*>(&data), sizeof(data));
-
-
-    
-    file.close();
-    return true;
-}
