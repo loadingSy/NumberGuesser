@@ -4,6 +4,9 @@
 
 using namespace std;
 
+
+extern string fileName;
+
 struct saveData
 {
     int gameLoopsPlayed = 0;
@@ -12,9 +15,9 @@ struct saveData
     int timesWon = 0;
     int timesLost = 0;
     int dumbInputs = 0;
-    int points = 0;
-    int pointsGainMultiplier = 1;
-    int pointsDiscountMultiplier = 1;
+    float points = 0;
+    float pointsGainMultiplier = 1;
+    float pointsDiscountMultiplier = 1;
     int chosenAttempts = 10;
     int guessRange = 30;
     int maxAttempts = 10;

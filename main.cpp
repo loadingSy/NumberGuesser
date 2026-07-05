@@ -8,6 +8,7 @@
 #include <random>
 #include "Shop.h"
 #include "SaveLoad.h"
+#include "HelperFunctions.h"
 
 using namespace std;
 
@@ -21,21 +22,15 @@ int minGuessRange = 10;
 
 int lastDistance = -1;
 bool gamePlayInProggress = true;
-string fileName = "saveFile.txt";
 
-void returnError(string errorMessage);
 int validateInput(string inputToCheck);
 void gameLoop();
 void triggerDefeat(int rightNumber, int userInput);
-int randomInRange(int min, int max);
-int validateToString(string stringToCheck);
 void endGame(bool victory, int rightNumber);
 void mainMenu();
 void mainMenuPanelTriggers(int stateId);
 void settingsMenu();
 void statsMenu();
-bool loadSaveData(const string& fileName, saveData& data);
-bool saveTempData(const string& fileName, const saveData& data);
 
 
 int main()
@@ -56,7 +51,7 @@ int main()
         }
         
     }
-    intializeShop(tempRunningSaveData);
+    initializeShop(tempRunningSaveData);
     cout << "Press Enter to start: ";
     cin.get();
     mainMenu();
@@ -128,7 +123,7 @@ void mainMenuPanelTriggers(int stateId)
         break;
 
         case 2:
-        openShop(tempRunningSaveData.points);
+        openShop();
         break;
         
         case 3:
@@ -145,23 +140,7 @@ void mainMenuPanelTriggers(int stateId)
     }
 }
 
-int validateToString(string stringToCheck)
-{
-    try
-    {
-        int processedInput =  stoi(stringToCheck);
-        return processedInput;
-    }
-    catch (invalid_argument& reason) {
-        returnError(reason.what());
-        return -1;
-    }
-    catch (out_of_range& reason)
-    {
-        returnError(reason.what());
-        return -1;
-    }
-}
+
 
 int validateInput(string inputToCheck)
 {
@@ -184,11 +163,6 @@ int validateInput(string inputToCheck)
         return -1;
     }
 
-}
-
-void returnError(string errorMessage)
-{
-    cout << "Error happened: " << errorMessage << "\n";
 }
 
 void settingsMenu()
@@ -387,15 +361,25 @@ void endGame(bool victory, int rightAnswer)
 {
     tempRunningSaveData.gameLoopsPlayed++;
     float pointsToChange = 0.0f;
+    float tempPointsToChange;
+    if(victory)
+    {
+        tempPointsToChange = (tempRunningSaveData.guessRange * 0.2f - min(min(6.0f,tempRunningSaveData.chosenAttempts*0.1f),tempRunningSaveData.guessRange*0.2f));
+    }
+    else 
+    {
+        tempPointsToChange = -((float)tempRunningSaveData.chosenAttempts/tempRunningSaveData.guessRange*basePenaltyValue);
+    }
+
+    pointsToChange = tempPointsToChange*tempRunningSaveData.pointsGainMultiplier;
+
     if(victory)
     {
         tempRunningSaveData.timesWon++;
-        pointsToChange = ceil((tempRunningSaveData.guessRange * 0.2f - min(min(6.0f,tempRunningSaveData.chosenAttempts*0.1f),tempRunningSaveData.guessRange*0.2f)));
         cout << "You won!, Rewarding \"" << pointsToChange << "\" Points\n";
     }
     else {
         tempRunningSaveData.timesLost++;
-        pointsToChange = ceil(-((float)tempRunningSaveData.chosenAttempts/tempRunningSaveData.guessRange*basePenaltyValue));
         cout << "You Lost it was " << rightAnswer << ", Charging \"" << pointsToChange << "\" Points\n" ;
     }
 
@@ -409,11 +393,5 @@ void shopMenu()
     //cout <<
 }
 
-int randomInRange(int min, int max)
-{
-    random_device dev;
-    mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(min,max);
-    return dist6(rng);
-}
+
 

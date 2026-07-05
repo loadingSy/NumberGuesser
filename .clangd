@@ -14,6 +14,7 @@ CompileFlags:
     "-isystem", "C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed",
     "-isystem", "C:/TDM-GCC-64/x86_64-w64-mingw32/include"
   ]
+  Compiler: C:/msys64/ucrt64/bin/g++.exe
 
 Diagnostics:
   UnusedIncludes: Strict

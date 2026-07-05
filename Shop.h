@@ -8,8 +8,7 @@
 using namespace std;
 
 
-extern unordered_map<string, function<bool()>> shopItemsFunction;
 
-void intializeShop(saveData& saveDataPointer);
+void initializeShop(saveData& saveDataPointer);
 
-void openShop(int& points);
+void openShop();
