@@ -22,79 +22,23 @@ class menu
 {
     public:
     std::string name;
+    bool hasLeave = true;
     std::vector<menuTab> mainTabs;
     void open()
     {
         mainLoop();
     }
-    menu(std::string cName, std::vector<menuTab> tabs)
+    menu(std::string cName, std::vector<menuTab> tabs, bool cHasLeave = true)
     {
+        hasLeave = cHasLeave;
         mainTabs = tabs;
         name = cName;
     }
-    template<typename T>
-    T ask(std::string question);
-    int askTabs(std::vector<menuTab> tabs);
+    int askTabs(const std::vector<menuTab>& tabs);
+    bool recurseTabs(const std::vector<menuTab> tabs);
     private:
     void mainLoop();
 };
 
-template <>
-inline int menu::ask<int>(std::string question)
-{
-    bool answered = false;
-    std::string userInput;
-    while (!answered) 
-    {
-        std::cout << question << "\n";
-        std::cin >> userInput;
-        int validatedInput = validateInput<int>(userInput);
-        if(validatedInput < 1 || validatedInput > 10000)
-        {
-            answered = false;
-            continue;
-        }
-        answered = true;
-        return validatedInput;
-    }
-    return -1;
-}
 
-template <>
-inline bool menu::ask<bool>(std::string question)
-{
-    bool answered = false;
-    std::string userInput;
-    while (!answered) 
-    {
-        std::cout << question << "\n";
-        std::cin >> userInput;
-        bool validatedInput = validateInput<bool>(userInput);
-        if(!validatedInput)
-        {
-            answered = false;
-            continue;
-        }
-        return validatedInput;
-    }
-}
-
-template<>
-inline std::string menu::ask<std::string>(std::string question)
-{
-    bool answered = false;
-    std::string userInput;
-    while (!answered) 
-    {
-        std::cout << question << "\n";
-        std::cin >> userInput;
-        std::string validatedInput = userInput;
-        if(validatedInput.empty())
-        {
-            answered = false;
-            continue;
-        }
-        return validatedInput;
-    }
-} 
 

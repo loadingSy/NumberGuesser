@@ -4,56 +4,27 @@
 #include "../HelperFunctions.h"
 #include "../SaveLoad.h"
 #include "../Shop.h"
-
+#include "SettingsMenu.h"
+#include "../GameSettings/GameSettings.h"
 
 void gameLoop();
 void triggerDefeat(int rightNumber, int userInput);
 void endGame(bool victory, int rightNumber);
-void mainMenuPanelTriggers(int stateId);
-void settingsMenu();
 void statsMenu();
 
-float basePenaltyValue = 5;
-int minGuessRange = 10;
 
-
-int lastDistance = -1;
-bool gamePlayInProggress = true;
 
 
 std::vector<menuTab> mainMenuTabs = 
 {
-    {"1. Play", gameLoop},
-    {"2. Shop", openShop},
-    {"3. Settings", settingsMenu},
-    {"4. Check Stats", statsMenu}
+    {"Play", gameLoop},
+    {"Shop", openShop},
+    {"Settings", [](){SettingsMenu.open();}},
+    {"Check Stats", statsMenu}
 };
 
 menu MainMenu("Main Menu",mainMenuTabs);
 
-
-void mainMenuPanelTriggers(int stateId)
-{
-    switch (stateId) 
-    {
-        case 1:
-        gameLoop();
-        break;
-
-        case 2:
-        openShop();
-        break;
-        
-        case 3:
-        settingsMenu();
-        break;
-
-        case 4:
-        statsMenu();
-        break;
-
-    }
-}
 
 
 void gameLoop()
@@ -102,61 +73,12 @@ void settingsMenu()
 {
     while(true)
     {
-        cout << "\nSettings\n"
-        <<"1. Attempts\n"
-        <<"2. Range\n";
+        
         string playerInput;
         cin >> playerInput;
 
         int validatedInput = validateInput<int>(playerInput);
-        if(validatedInput != -1)
-        {
-            switch (validatedInput) 
-            {
-                case 1:
-                    cout << "\nEnter Attempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
-                    playerInput = "";
-                    cin >> playerInput;
-                    validatedInput = validateInput<int>(playerInput);
-                    if(validatedInput < 1)
-                    {
-                        cout << "\nInvalid input!\n";
-                        continue;
-                    }
-                    if(validatedInput > tempRunningSaveData.maxAttempts)
-                    {
-                        cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
-                        validatedInput = tempRunningSaveData.maxAttempts;
-                    }
-                        cout << "\nSet to: " << validatedInput << " Successfully!\n";
-                    tempRunningSaveData.chosenAttempts = validatedInput;
-                    return;
-
-                    break;
-
-                case 2:
-                    cout << "\nEnter Range 0-N, (current " <<  tempRunningSaveData.guessRange << ", min " << minGuessRange <<"): ";
-                    playerInput = "";
-                    cin >> playerInput;
-                    validatedInput = validateInput<int>(playerInput);
-                    if(validatedInput < minGuessRange)
-                    {
-                        if(validatedInput > 0)
-                        {
-                            cout << "\nInput lower than minimum: " << minGuessRange << "\n";
-                            continue;
-                        }
-                        cout << "\nInvalid input!\n";
-                        continue;
-                    }
-
-                    cout << "\nSet to: " << validatedInput << " Successfully!\n";
-                    tempRunningSaveData.guessRange = validatedInput;
-                    return;
-                    break;
-            }
-            continue;
-        }
+        
 
         cout << "\nInvalid Input! retry again.\n";
     }

@@ -39,7 +39,7 @@ int main()
         }
         
     }
-    initializeShop(tempRunningSaveData);
+    initializeShop();
     cout << "Press Enter to start: ";
     cin.get();
     MainMenu.open();

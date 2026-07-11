@@ -128,6 +128,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+GameSettings/GameSettings.obj: GameSettings/GameSettings.cpp.obj
+.PHONY : GameSettings/GameSettings.obj
+
+# target to build an object file
+GameSettings/GameSettings.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/GameSettings/GameSettings.cpp.obj
+.PHONY : GameSettings/GameSettings.cpp.obj
+
+GameSettings/GameSettings.i: GameSettings/GameSettings.cpp.i
+.PHONY : GameSettings/GameSettings.i
+
+# target to preprocess a source file
+GameSettings/GameSettings.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/GameSettings/GameSettings.cpp.i
+.PHONY : GameSettings/GameSettings.cpp.i
+
+GameSettings/GameSettings.s: GameSettings/GameSettings.cpp.s
+.PHONY : GameSettings/GameSettings.s
+
+# target to generate assembly for a file
+GameSettings/GameSettings.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/GameSettings/GameSettings.cpp.s
+.PHONY : GameSettings/GameSettings.cpp.s
+
 HelperFunctions.obj: HelperFunctions.cpp.obj
 .PHONY : HelperFunctions.obj
 
@@ -199,6 +223,30 @@ Menus/Menu.s: Menus/Menu.cpp.s
 Menus/Menu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/Menu.cpp.s
 .PHONY : Menus/Menu.cpp.s
+
+Menus/SettingsMenu.obj: Menus/SettingsMenu.cpp.obj
+.PHONY : Menus/SettingsMenu.obj
+
+# target to build an object file
+Menus/SettingsMenu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj
+.PHONY : Menus/SettingsMenu.cpp.obj
+
+Menus/SettingsMenu.i: Menus/SettingsMenu.cpp.i
+.PHONY : Menus/SettingsMenu.i
+
+# target to preprocess a source file
+Menus/SettingsMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/SettingsMenu.cpp.i
+.PHONY : Menus/SettingsMenu.cpp.i
+
+Menus/SettingsMenu.s: Menus/SettingsMenu.cpp.s
+.PHONY : Menus/SettingsMenu.s
+
+# target to generate assembly for a file
+Menus/SettingsMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/SettingsMenu.cpp.s
+.PHONY : Menus/SettingsMenu.cpp.s
 
 SaveLoad.obj: SaveLoad.cpp.obj
 .PHONY : SaveLoad.obj
@@ -281,6 +329,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main
+	@echo ... GameSettings/GameSettings.obj
+	@echo ... GameSettings/GameSettings.i
+	@echo ... GameSettings/GameSettings.s
 	@echo ... HelperFunctions.obj
 	@echo ... HelperFunctions.i
 	@echo ... HelperFunctions.s
@@ -290,6 +341,9 @@ help:
 	@echo ... Menus/Menu.obj
 	@echo ... Menus/Menu.i
 	@echo ... Menus/Menu.s
+	@echo ... Menus/SettingsMenu.obj
+	@echo ... Menus/SettingsMenu.i
+	@echo ... Menus/SettingsMenu.s
 	@echo ... SaveLoad.obj
 	@echo ... SaveLoad.i
 	@echo ... SaveLoad.s

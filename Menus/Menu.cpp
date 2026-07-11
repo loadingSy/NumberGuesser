@@ -9,24 +9,14 @@
 
 void menu::mainLoop()
 {
-    while(true)
+    bool continueLoop = true;
+    while (continueLoop) 
     {
-    std::cout << "\n" << name << "\n";
-    int chosenTab = askTabs(mainTabs)-1;
-    if(mainTabs[chosenTab].childrens.index() == 1)
-    {
-        askTabs(std::get<1>(mainTabs[chosenTab].childrens));
-    }
-    else {
-        std::function<void()> func = std::get<0>(mainTabs[chosenTab].childrens);
-        func();
-    }
-    
-    
+        continueLoop = recurseTabs(mainTabs);
     }
 }
 
-int menu::askTabs(std::vector<menuTab> tabs)
+int menu::askTabs(const std::vector<menuTab>& tabs)
 {
     std::stringstream askSS;
     int tabCount = 1;
@@ -35,15 +25,36 @@ int menu::askTabs(std::vector<menuTab> tabs)
         askSS << tabCount << ". " << tab.name << "\n";
         tabCount++;
     }
+    if(hasLeave)
+    {
+        askSS << tabCount << ". " << "Leave" << "\n";
+    }
     std::string askQuestion = askSS.str();
     bool acceptedInput = false;
     int chosenTab;
     while(!acceptedInput)
     {
         chosenTab = ask<int>(askQuestion); 
-        acceptedInput = inRange(chosenTab, 1, tabCount - 1);
+        acceptedInput = inRange(chosenTab, 1, (hasLeave? tabCount : tabCount - 1));
     }
     return chosenTab;
 }
 
-
+bool menu::recurseTabs(const std::vector<menuTab> tabs)
+{
+    std::cout << "\n" << name << "\n";
+    int chosenTab = askTabs(tabs)-1;
+    if(hasLeave && chosenTab == tabs.size())
+    {
+        return false;
+    }
+    if(tabs[chosenTab].childrens.index() == 1)
+    {
+        recurseTabs(std::get<1>(tabs[chosenTab].childrens));
+    }
+    else {
+        std::function<void()> func = std::get<0>(tabs[chosenTab].childrens);
+        func();
+    }
+    return true;
+}

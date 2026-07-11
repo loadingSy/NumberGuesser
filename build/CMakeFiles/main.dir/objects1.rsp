@@ -1,1 +1,1 @@
-CMakeFiles/main.dir/HelperFunctions.cpp.obj CMakeFiles/main.dir/Menus/MainMenu.cpp.obj CMakeFiles/main.dir/Menus/Menu.cpp.obj CMakeFiles/main.dir/SaveLoad.cpp.obj CMakeFiles/main.dir/Shop.cpp.obj CMakeFiles/main.dir/main.cpp.obj
+CMakeFiles/main.dir/GameSettings/GameSettings.cpp.obj CMakeFiles/main.dir/HelperFunctions.cpp.obj CMakeFiles/main.dir/Menus/MainMenu.cpp.obj CMakeFiles/main.dir/Menus/Menu.cpp.obj CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj CMakeFiles/main.dir/SaveLoad.cpp.obj CMakeFiles/main.dir/Shop.cpp.obj CMakeFiles/main.dir/main.cpp.obj

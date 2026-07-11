@@ -1,6 +1,12 @@
 [
 {
   "directory": "C:/Work Folder/BackToC++/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\GameSettings\\GameSettings.cpp.obj -c \"C:\\Work Folder\\BackToC++\\GameSettings\\GameSettings.cpp\"",
+  "file": "C:/Work Folder/BackToC++/GameSettings/GameSettings.cpp",
+  "output": "CMakeFiles/main.dir/GameSettings/GameSettings.cpp.obj"
+},
+{
+  "directory": "C:/Work Folder/BackToC++/build",
   "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\HelperFunctions.cpp.obj -c \"C:\\Work Folder\\BackToC++\\HelperFunctions.cpp\"",
   "file": "C:/Work Folder/BackToC++/HelperFunctions.cpp",
   "output": "CMakeFiles/main.dir/HelperFunctions.cpp.obj"
@@ -16,6 +22,12 @@
   "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\Menus\\Menu.cpp.obj -c \"C:\\Work Folder\\BackToC++\\Menus\\Menu.cpp\"",
   "file": "C:/Work Folder/BackToC++/Menus/Menu.cpp",
   "output": "CMakeFiles/main.dir/Menus/Menu.cpp.obj"
+},
+{
+  "directory": "C:/Work Folder/BackToC++/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\Menus\\SettingsMenu.cpp.obj -c \"C:\\Work Folder\\BackToC++\\Menus\\SettingsMenu.cpp\"",
+  "file": "C:/Work Folder/BackToC++/Menus/SettingsMenu.cpp",
+  "output": "CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj"
 },
 {
   "directory": "C:/Work Folder/BackToC++/build",

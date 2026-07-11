@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <algorithm>
 #include <cctype>
 #include <stdexcept>
@@ -8,6 +9,8 @@
 
 bool inRange(int num, int min, int max);
 
+template<typename T>
+T ask(std::string question);
 
 int randomInRange(int min, int max);
 template<typename T>
@@ -47,3 +50,62 @@ inline bool validateInput<bool>(const std::string stringToCheck)
     }
     return false;
 }
+
+template <>
+inline int ask<int>(std::string question)
+{
+    bool answered = false;
+    std::string userInput;
+    while (!answered) 
+    {
+        std::cout << question << "\n";
+        std::cin >> userInput;
+        int validatedInput = validateInput<int>(userInput);
+        if(validatedInput < 1 || validatedInput > 10000)
+        {
+            answered = false;
+            continue;
+        }
+        answered = true;
+        return validatedInput;
+    }
+    return -1;
+}
+
+template <>
+inline bool ask<bool>(std::string question)
+{
+    bool answered = false;
+    std::string userInput;
+    while (!answered) 
+    {
+        std::cout << question << "\n";
+        std::cin >> userInput;
+        bool validatedInput = validateInput<bool>(userInput);
+        if(!validatedInput)
+        {
+            answered = false;
+            continue;
+        }
+        return validatedInput;
+    }
+}
+
+template<>
+inline std::string ask<std::string>(std::string question)
+{
+    bool answered = false;
+    std::string userInput;
+    while (!answered) 
+    {
+        std::cout << question << "\n";
+        std::cin >> userInput;
+        std::string validatedInput = userInput;
+        if(validatedInput.empty())
+        {
+            answered = false;
+            continue;
+        }
+        return validatedInput;
+    }
+} 

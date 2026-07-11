@@ -5,10 +5,9 @@
 #include <unordered_map>
 #include <string>
 #include "SaveLoad.h"
-using namespace std;
 
 
 
-void initializeShop(saveData& saveDataPointer);
+void initializeShop();
 
 void openShop();
