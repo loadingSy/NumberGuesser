@@ -9,6 +9,7 @@
 #include "Shop.h"
 #include "SaveLoad.h"
 #include "HelperFunctions.h"
+#include "Menus/Menu.h"
 
 using namespace std;
 
@@ -23,7 +24,6 @@ int minGuessRange = 10;
 int lastDistance = -1;
 bool gamePlayInProggress = true;
 
-int validateInput(string inputToCheck);
 void gameLoop();
 void triggerDefeat(int rightNumber, int userInput);
 void endGame(bool victory, int rightNumber);
@@ -35,7 +35,6 @@ void statsMenu();
 
 int main()
 {
-    
     if (loadSaveData(fileName, tempRunningSaveData)) 
     {
         cout << "Save data file loaded Successfully!\n";
@@ -77,7 +76,11 @@ void gameLoop()
         cout << "Enter Your Guess: ";
         string playerInput; 
         cin >> playerInput;
-        int playerGuess = validateInput(playerInput);
+        int playerGuess = validateInput<int>(playerInput);
+        if(playerGuess > tempRunningSaveData.guessRange or playerGuess < 0)
+        {
+            playerGuess = -1;
+        }
         continuePlaying = currentAttempts > 0 && (playerGuess == -1 or playerGuess != generatedNumber);
         if(playerGuess == -1 or playerGuess != generatedNumber)
         {
@@ -105,7 +108,11 @@ void mainMenu()
         <<"4. Check Stats\n";
         string userInput;
         cin >> userInput;
-        int validatedUserInput = validateInput(userInput);
+        int validatedUserInput = validateInput<int>(userInput);
+        if(validatedUserInput > tempRunningSaveData.guessRange or validatedUserInput < 0)
+        {
+            validatedUserInput = -1;
+        }
         if(validatedUserInput == -1)
         {
             continue;
@@ -142,28 +149,7 @@ void mainMenuPanelTriggers(int stateId)
 
 
 
-int validateInput(string inputToCheck)
-{
-    try
-    {
-        int processedInput =  stoi(inputToCheck);
-        if(processedInput > tempRunningSaveData.guessRange or processedInput < 0)
-        {
-            return -1;
-        }
-        return processedInput;
-    }
-    catch (invalid_argument& reason) {
-        returnError(reason.what());
-        return -1;
-    }
-    catch (out_of_range& reason)
-    {
-        returnError(reason.what());
-        return -1;
-    }
 
-}
 
 void settingsMenu()
 {
@@ -175,7 +161,7 @@ void settingsMenu()
         string playerInput;
         cin >> playerInput;
 
-        int validatedInput = validateToString(playerInput);
+        int validatedInput = validateInput<int>(playerInput);
         if(validatedInput != -1)
         {
             switch (validatedInput) 
@@ -184,7 +170,7 @@ void settingsMenu()
                     cout << "\nEnter Attempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
                     playerInput = "";
                     cin >> playerInput;
-                    validatedInput = validateToString(playerInput);
+                    validatedInput = validateInput<int>(playerInput);
                     if(validatedInput < 1)
                     {
                         cout << "\nInvalid input!\n";
@@ -195,7 +181,6 @@ void settingsMenu()
                         cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
                         validatedInput = tempRunningSaveData.maxAttempts;
                     }
-
                         cout << "\nSet to: " << validatedInput << " Successfully!\n";
                     tempRunningSaveData.chosenAttempts = validatedInput;
                     return;
@@ -206,7 +191,7 @@ void settingsMenu()
                     cout << "\nEnter Range 0-N, (current " <<  tempRunningSaveData.guessRange << ", min " << minGuessRange <<"): ";
                     playerInput = "";
                     cin >> playerInput;
-                    validatedInput = validateToString(playerInput);
+                    validatedInput = validateInput<int>(playerInput);
                     if(validatedInput < minGuessRange)
                     {
                         if(validatedInput > 0)
@@ -252,7 +237,7 @@ void statsMenu()
     string playerInput;
     cin >> playerInput;
 
-    int validatedInput = validateToString(playerInput);
+    int validatedInput = validateInput<int>(playerInput);
 
     if(validatedInput == 5)
     {

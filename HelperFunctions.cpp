@@ -1,3 +1,4 @@
+#include "HelperFunctions.h"
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
@@ -19,25 +20,13 @@ int randomInRange(int min, int max)
     return dist6(rng);
 }
 
-int validateToString(string stringToCheck)
+bool inRange(int num, int min, int max)
 {
-    try
-    {
-        int processedInput =  stoi(stringToCheck);
-        return processedInput;
-    }
-    catch (invalid_argument& reason) {
-        returnError(reason.what());
-        return -1;
-    }
-    catch (out_of_range& reason)
-    {
-        returnError(reason.what());
-        return -1;
-    }
+    return num >= min && num <= max;
 }
 
 void returnError(string errorMessage)
 {
     cout << "Error happened: " << errorMessage << "\n";
 }
+

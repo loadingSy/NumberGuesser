@@ -12,7 +12,11 @@ using namespace std;
 
 static saveData* globalSaveData = nullptr;
 
-
+struct purchaseInfo
+{
+    bool accepted = false;
+    string purchaseMessage;
+};
 
 struct shopItem
 {
@@ -20,21 +24,25 @@ struct shopItem
     string itemName;
     string description;
     float price;
-    function<void()> apply;
+    function<purchaseInfo()> apply;
     bool purchase()
     {
         if(globalSaveData->points >= this->price)
         {
             globalSaveData->points -= this->price;
-            apply();
-            return true;
+            purchaseInfo purchaseData = apply();
+            if(purchaseData.accepted)
+            {
+                return true;
+            }
+            
         }
         return false;
     }
 };
 
 shopItem item_pointsGainMultiplier;
-
+shopItem item_pointsDiscountMultiplier;
 
 void generateShopItems();
 
@@ -62,7 +70,7 @@ void openShop()
         }
         string playerInput;
         cin >> playerInput;
-        int validatedInput = validateToString(playerInput);
+        int validatedInput = validateInput<int>(playerInput);
         if(validatedInput <= 0 or validatedInput > itemsCount)
         {
             cout << "\nInvalid Input\n";
@@ -87,10 +95,10 @@ void generateShopItems()
     item_pointsGainMultiplier.itemId = 1133;
     item_pointsGainMultiplier.description = "Multiplier for points generation";
     item_pointsGainMultiplier.price = 4 * globalSaveData->pointsGainMultiplier * (1-globalSaveData->pointsDiscountMultiplier);
-    item_pointsGainMultiplier.apply = []() ->void {
+    item_pointsGainMultiplier.apply = []() ->purchaseInfo {
         globalSaveData->pointsGainMultiplier += 0.1;
-        
         saveTempData(fileName, *globalSaveData);
+        return {true,"accepted"};
     };
     shopItems[item_pointsGainMultiplier.itemId] = (item_pointsGainMultiplier);
 }
