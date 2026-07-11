@@ -7,6 +7,8 @@ using namespace std;
 
 extern string fileName;
 
+
+
 struct saveData
 {
     int gameLoopsPlayed = 0;
@@ -22,6 +24,8 @@ struct saveData
     int guessRange = 30;
     int maxAttempts = 10;
 };
+
+extern saveData tempRunningSaveData;
 
 bool loadSaveData(const string& fileName, saveData& data);
 

@@ -9,7 +9,7 @@ using namespace std;
 int saveVersion = 1;
 string fileName = "saveFile.txt";
 
-
+saveData tempRunningSaveData;
 
 bool loadSaveData(const string& fileName, saveData& data)
 {
