@@ -3,6 +3,6 @@
 #include "Menu.h"
 #include "../HelperFunctions.h"
 #include "../SaveLoad.h"
-#include "../Shop.h"
+#include "ShopMenu.h"
 
 extern menu SettingsMenu;

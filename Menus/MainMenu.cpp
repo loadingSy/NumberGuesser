@@ -3,7 +3,7 @@
 #include "Menu.h"
 #include "../HelperFunctions.h"
 #include "../SaveLoad.h"
-#include "../Shop.h"
+#include "ShopMenu.h"
 #include "SettingsMenu.h"
 #include "../GameSettings/GameSettings.h"
 
@@ -18,7 +18,7 @@ void statsMenu();
 std::vector<menuTab> mainMenuTabs = 
 {
     {"Play", gameLoop},
-    {"Shop", openShop},
+    {"Shop", [](){ShopMenu.open();}},
     {"Settings", [](){SettingsMenu.open();}},
     {"Check Stats", statsMenu}
 };

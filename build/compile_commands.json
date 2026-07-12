@@ -31,15 +31,15 @@
 },
 {
   "directory": "C:/Work Folder/BackToC++/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\SaveLoad.cpp.obj -c \"C:\\Work Folder\\BackToC++\\SaveLoad.cpp\"",
-  "file": "C:/Work Folder/BackToC++/SaveLoad.cpp",
-  "output": "CMakeFiles/main.dir/SaveLoad.cpp.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\Menus\\ShopMenu.cpp.obj -c \"C:\\Work Folder\\BackToC++\\Menus\\ShopMenu.cpp\"",
+  "file": "C:/Work Folder/BackToC++/Menus/ShopMenu.cpp",
+  "output": "CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj"
 },
 {
   "directory": "C:/Work Folder/BackToC++/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\Shop.cpp.obj -c \"C:\\Work Folder\\BackToC++\\Shop.cpp\"",
-  "file": "C:/Work Folder/BackToC++/Shop.cpp",
-  "output": "CMakeFiles/main.dir/Shop.cpp.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\main.dir\\SaveLoad.cpp.obj -c \"C:\\Work Folder\\BackToC++\\SaveLoad.cpp\"",
+  "file": "C:/Work Folder/BackToC++/SaveLoad.cpp",
+  "output": "CMakeFiles/main.dir/SaveLoad.cpp.obj"
 },
 {
   "directory": "C:/Work Folder/BackToC++/build",

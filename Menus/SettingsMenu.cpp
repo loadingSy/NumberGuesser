@@ -4,7 +4,7 @@
 #include "Menu.h"
 #include "../HelperFunctions.h"
 #include "../SaveLoad.h"
-#include "../Shop.h"
+#include "ShopMenu.h"
 #include "../GameSettings/GameSettings.h"
 
 void attemptsFunction()
@@ -69,3 +69,4 @@ std::vector<menuTab> settingsMenuTabs =
 };
 
 menu SettingsMenu("Settings", settingsMenuTabs);
+

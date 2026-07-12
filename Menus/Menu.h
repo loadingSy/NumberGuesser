@@ -23,17 +23,14 @@ class menu
     public:
     std::string name;
     bool hasLeave = true;
-    std::vector<menuTab> mainTabs;
+    std::vector<menuTab>& mainTabs;
+    std::function<void()> initialize = [](){};
     void open()
     {
         mainLoop();
     }
-    menu(std::string cName, std::vector<menuTab> tabs, bool cHasLeave = true)
-    {
-        hasLeave = cHasLeave;
-        mainTabs = tabs;
-        name = cName;
-    }
+    menu(std::string cName, std::vector<menuTab>& tabs, bool cHasLeave = true, std::function<void()> cInitialize = [](){})
+    : name(cName), hasLeave(cHasLeave), mainTabs(tabs), initialize(cInitialize){}
     int askTabs(const std::vector<menuTab>& tabs);
     bool recurseTabs(const std::vector<menuTab> tabs);
     private:

@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include <random>
-#include "Shop.h"
+#include "Menus/ShopMenu.h"
 #include "SaveLoad.h"
 #include "HelperFunctions.h"
 #include "Menus/Menu.h"

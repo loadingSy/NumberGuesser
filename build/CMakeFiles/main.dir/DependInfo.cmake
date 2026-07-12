@@ -13,8 +13,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Work Folder/BackToC++/Menus/MainMenu.cpp" "CMakeFiles/main.dir/Menus/MainMenu.cpp.obj" "gcc" "CMakeFiles/main.dir/Menus/MainMenu.cpp.obj.d"
   "C:/Work Folder/BackToC++/Menus/Menu.cpp" "CMakeFiles/main.dir/Menus/Menu.cpp.obj" "gcc" "CMakeFiles/main.dir/Menus/Menu.cpp.obj.d"
   "C:/Work Folder/BackToC++/Menus/SettingsMenu.cpp" "CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj" "gcc" "CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj.d"
+  "C:/Work Folder/BackToC++/Menus/ShopMenu.cpp" "CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj" "gcc" "CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj.d"
   "C:/Work Folder/BackToC++/SaveLoad.cpp" "CMakeFiles/main.dir/SaveLoad.cpp.obj" "gcc" "CMakeFiles/main.dir/SaveLoad.cpp.obj.d"
-  "C:/Work Folder/BackToC++/Shop.cpp" "CMakeFiles/main.dir/Shop.cpp.obj" "gcc" "CMakeFiles/main.dir/Shop.cpp.obj.d"
   "C:/Work Folder/BackToC++/main.cpp" "CMakeFiles/main.dir/main.cpp.obj" "gcc" "CMakeFiles/main.dir/main.cpp.obj.d"
   )
 

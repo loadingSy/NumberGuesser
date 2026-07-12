@@ -248,6 +248,30 @@ Menus/SettingsMenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/SettingsMenu.cpp.s
 .PHONY : Menus/SettingsMenu.cpp.s
 
+Menus/ShopMenu.obj: Menus/ShopMenu.cpp.obj
+.PHONY : Menus/ShopMenu.obj
+
+# target to build an object file
+Menus/ShopMenu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj
+.PHONY : Menus/ShopMenu.cpp.obj
+
+Menus/ShopMenu.i: Menus/ShopMenu.cpp.i
+.PHONY : Menus/ShopMenu.i
+
+# target to preprocess a source file
+Menus/ShopMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/ShopMenu.cpp.i
+.PHONY : Menus/ShopMenu.cpp.i
+
+Menus/ShopMenu.s: Menus/ShopMenu.cpp.s
+.PHONY : Menus/ShopMenu.s
+
+# target to generate assembly for a file
+Menus/ShopMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Menus/ShopMenu.cpp.s
+.PHONY : Menus/ShopMenu.cpp.s
+
 SaveLoad.obj: SaveLoad.cpp.obj
 .PHONY : SaveLoad.obj
 
@@ -271,30 +295,6 @@ SaveLoad.s: SaveLoad.cpp.s
 SaveLoad.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/SaveLoad.cpp.s
 .PHONY : SaveLoad.cpp.s
-
-Shop.obj: Shop.cpp.obj
-.PHONY : Shop.obj
-
-# target to build an object file
-Shop.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Shop.cpp.obj
-.PHONY : Shop.cpp.obj
-
-Shop.i: Shop.cpp.i
-.PHONY : Shop.i
-
-# target to preprocess a source file
-Shop.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Shop.cpp.i
-.PHONY : Shop.cpp.i
-
-Shop.s: Shop.cpp.s
-.PHONY : Shop.s
-
-# target to generate assembly for a file
-Shop.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/Shop.cpp.s
-.PHONY : Shop.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -344,12 +344,12 @@ help:
 	@echo ... Menus/SettingsMenu.obj
 	@echo ... Menus/SettingsMenu.i
 	@echo ... Menus/SettingsMenu.s
+	@echo ... Menus/ShopMenu.obj
+	@echo ... Menus/ShopMenu.i
+	@echo ... Menus/ShopMenu.s
 	@echo ... SaveLoad.obj
 	@echo ... SaveLoad.i
 	@echo ... SaveLoad.s
-	@echo ... Shop.obj
-	@echo ... Shop.i
-	@echo ... Shop.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

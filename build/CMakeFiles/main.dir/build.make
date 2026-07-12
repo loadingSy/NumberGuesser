@@ -141,10 +141,24 @@ CMakeFiles/main.dir/Menus/SettingsMenu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/Menus/SettingsMenu.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Work Folder\BackToC++\Menus\SettingsMenu.cpp" -o CMakeFiles\main.dir\Menus\SettingsMenu.cpp.s
 
+CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj: C:/Work\ Folder/BackToC++/Menus/ShopMenu.cpp
+CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Work Folder\BackToC++\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj -MF CMakeFiles\main.dir\Menus\ShopMenu.cpp.obj.d -o CMakeFiles\main.dir\Menus\ShopMenu.cpp.obj -c "C:\Work Folder\BackToC++\Menus\ShopMenu.cpp"
+
+CMakeFiles/main.dir/Menus/ShopMenu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/Menus/ShopMenu.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Work Folder\BackToC++\Menus\ShopMenu.cpp" > CMakeFiles\main.dir\Menus\ShopMenu.cpp.i
+
+CMakeFiles/main.dir/Menus/ShopMenu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/Menus/ShopMenu.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Work Folder\BackToC++\Menus\ShopMenu.cpp" -o CMakeFiles\main.dir\Menus\ShopMenu.cpp.s
+
 CMakeFiles/main.dir/SaveLoad.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/SaveLoad.cpp.obj: C:/Work\ Folder/BackToC++/SaveLoad.cpp
 CMakeFiles/main.dir/SaveLoad.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Work Folder\BackToC++\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/SaveLoad.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Work Folder\BackToC++\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/SaveLoad.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/SaveLoad.cpp.obj -MF CMakeFiles\main.dir\SaveLoad.cpp.obj.d -o CMakeFiles\main.dir\SaveLoad.cpp.obj -c "C:\Work Folder\BackToC++\SaveLoad.cpp"
 
 CMakeFiles/main.dir/SaveLoad.cpp.i: cmake_force
@@ -154,20 +168,6 @@ CMakeFiles/main.dir/SaveLoad.cpp.i: cmake_force
 CMakeFiles/main.dir/SaveLoad.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/SaveLoad.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Work Folder\BackToC++\SaveLoad.cpp" -o CMakeFiles\main.dir\SaveLoad.cpp.s
-
-CMakeFiles/main.dir/Shop.cpp.obj: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/Shop.cpp.obj: C:/Work\ Folder/BackToC++/Shop.cpp
-CMakeFiles/main.dir/Shop.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Work Folder\BackToC++\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/Shop.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/Shop.cpp.obj -MF CMakeFiles\main.dir\Shop.cpp.obj.d -o CMakeFiles\main.dir\Shop.cpp.obj -c "C:\Work Folder\BackToC++\Shop.cpp"
-
-CMakeFiles/main.dir/Shop.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/Shop.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Work Folder\BackToC++\Shop.cpp" > CMakeFiles\main.dir\Shop.cpp.i
-
-CMakeFiles/main.dir/Shop.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/Shop.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Work Folder\BackToC++\Shop.cpp" -o CMakeFiles\main.dir\Shop.cpp.s
 
 CMakeFiles/main.dir/main.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.obj: C:/Work\ Folder/BackToC++/main.cpp
@@ -190,8 +190,8 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/Menus/MainMenu.cpp.obj" \
 "CMakeFiles/main.dir/Menus/Menu.cpp.obj" \
 "CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj" \
+"CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj" \
 "CMakeFiles/main.dir/SaveLoad.cpp.obj" \
-"CMakeFiles/main.dir/Shop.cpp.obj" \
 "CMakeFiles/main.dir/main.cpp.obj"
 
 # External object files for target main
@@ -202,8 +202,8 @@ main.exe: CMakeFiles/main.dir/HelperFunctions.cpp.obj
 main.exe: CMakeFiles/main.dir/Menus/MainMenu.cpp.obj
 main.exe: CMakeFiles/main.dir/Menus/Menu.cpp.obj
 main.exe: CMakeFiles/main.dir/Menus/SettingsMenu.cpp.obj
+main.exe: CMakeFiles/main.dir/Menus/ShopMenu.cpp.obj
 main.exe: CMakeFiles/main.dir/SaveLoad.cpp.obj
-main.exe: CMakeFiles/main.dir/Shop.cpp.obj
 main.exe: CMakeFiles/main.dir/main.cpp.obj
 main.exe: CMakeFiles/main.dir/build.make
 main.exe: CMakeFiles/main.dir/linkLibs.rsp

@@ -166,10 +166,11 @@ CMakeFiles/main.dir/Menus/MainMenu.cpp.obj: \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_tempbuf.h \
  C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
  C:/msys64/ucrt64/include/c++/14.2.0/pstl/execution_defs.h \
- C:/Work\ Folder/BackToC++/SaveLoad.h C:/Work\ Folder/BackToC++/Shop.h \
- C:/msys64/ucrt64/include/c++/14.2.0/map \
+ C:/Work\ Folder/BackToC++/SaveLoad.h \
+ C:\Work\ Folder\BackToC++\Menus\ShopMenu.h \
+ C:/Work\ Folder/BackToC++/GameSettings/GameSettings.h \
+ C:\Work\ Folder\BackToC++\Menus\SettingsMenu.h \
+ C:/Work\ Folder/BackToC++/Shop.h C:/msys64/ucrt64/include/c++/14.2.0/map \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_tree.h \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_map.h \
- C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_multimap.h \
- C:\Work\ Folder\BackToC++\Menus\SettingsMenu.h \
- C:/Work\ Folder/BackToC++/GameSettings/GameSettings.h
+ C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_multimap.h
