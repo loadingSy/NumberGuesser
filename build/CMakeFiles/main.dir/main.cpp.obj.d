@@ -187,7 +187,7 @@ CMakeFiles/main.dir/main.cpp.obj: C:\Work\ Folder\BackToC++\main.cpp \
  C:/msys64/ucrt64/include/c++/14.2.0/numeric \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_numeric.h \
  C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_numeric_defs.h \
- C:\Work\ Folder\BackToC++\Shop.h \
+ C:\Work\ Folder\BackToC++\Menus/ShopMenu.h \
  C:/msys64/ucrt64/include/c++/14.2.0/functional \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/std_function.h \
  C:/msys64/ucrt64/include/c++/14.2.0/unordered_map \
@@ -200,13 +200,11 @@ CMakeFiles/main.dir/main.cpp.obj: C:\Work\ Folder\BackToC++\main.cpp \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/erase_if.h \
  C:/msys64/ucrt64/include/c++/14.2.0/array \
  C:/msys64/ucrt64/include/c++/14.2.0/compare \
- C:/msys64/ucrt64/include/c++/14.2.0/map \
- C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_tree.h \
- C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_map.h \
- C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_multimap.h \
- C:\Work\ Folder\BackToC++\SaveLoad.h \
- C:\Work\ Folder\BackToC++\HelperFunctions.h \
+ C:/msys64/ucrt64/include/c++/14.2.0/optional \
  C:\Work\ Folder\BackToC++\Menus/Menu.h \
  C:/msys64/ucrt64/include/c++/14.2.0/variant \
  C:/msys64/ucrt64/include/c++/14.2.0/bits/parse_numbers.h \
+ C:/Work\ Folder/BackToC++/HelperFunctions.h \
+ C:/Work\ Folder/BackToC++/GameSettings/GameSettings.h \
+ C:/Work\ Folder/BackToC++/SaveLoad.h \
  C:\Work\ Folder\BackToC++\Menus/MainMenu.h

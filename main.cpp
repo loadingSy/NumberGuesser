@@ -12,6 +12,7 @@
 #include "Menus/Menu.h"
 #include "Menus/MainMenu.h"
 
+
 using namespace std;
 
 
@@ -39,10 +40,11 @@ int main()
         }
         
     }
-    initializeShop();
     cout << "Press Enter to start: ";
+    ShopMenu.initialize();
     cin.get();
     MainMenu.open();
+    
 }
 
 
