@@ -1,3 +1,9 @@
-*.exe
+.agents/
+.cache/
 .vscode/
+.clangd
+
+build/
+*.exe
+
 saveFile.txt

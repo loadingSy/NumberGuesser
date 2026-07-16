@@ -1,3 +1,0 @@
-C:/Work Folder/BackToC++/build/CMakeFiles/main.dir
-C:/Work Folder/BackToC++/build/CMakeFiles/edit_cache.dir
-C:/Work Folder/BackToC++/build/CMakeFiles/rebuild_cache.dir
