@@ -1,4 +1,5 @@
 #include "ShopMenu.h"
+#include <cmath>
 #include <functional>
 #include <iostream>
 #include <list>
@@ -19,7 +20,7 @@ void initializeShop();
 inline string generateItemNameStructure(shopItem item)
 {
     stringstream ss;
-    ss << item.name << " - " << item.price << "$";
+    ss << item.name << " - " << item.getPrice() << "$";
     return ss.str();
 }
 
@@ -32,17 +33,17 @@ std::vector<shopItem> shopItems;
 
 menu ShopMenu("Shop", std::ref(shopTabs), true, initializeShop);
 
-shopItem pointsGainMultiplier("Points Gain Multiplier", 10*tempRunningSaveData.pointsGainMultiplier, 
+shopItem pointsGainMultiplier("Points Gain Multiplier", [](){ return pow(10 * tempRunningSaveData.pointsGainMultiplier,1.15);}, 
 []()->purchaseInfo
 {
-    tempRunningSaveData.pointsGainMultiplier+=0.1;
-    pointsGainMultiplier.price++;
+    tempRunningSaveData.pointsGainMultiplier+=0.2;
     return {true, std::nullopt};
 }
 );
 
 void managePurchase(shopItem item)
 {
+    float price = item.getPrice();
     purchaseInfo info = item.purchase();
     bool result = info.accepted;
     if(result)
@@ -53,7 +54,8 @@ void managePurchase(shopItem item)
         }
         else
         {
-            cout << "Purchased Successfully for " << item.price << "$";
+            cout << "Purchased Successfully for " << price << "$";
+            saveTempData(fileName, tempRunningSaveData);
         }
     }
     else 
@@ -85,4 +87,3 @@ void initializeShop()
         shopTabs.push_back(tempTab);
     } 
 }
-//to be added price getter/setter

@@ -23,39 +23,25 @@ class shopItem
 {
     public:
         shopItem(std::string cName, float cPrice, std::function<purchaseInfo()> cApply)
-        : name(cName), price(cPrice), apply(cApply) {}
-        shopItem(std::string cName, int cPrice, std::function<purchaseInfo()> cApply)
-        : name(cName), price(cPrice), apply(cApply) {}
+        : name(cName), price([cPrice](){return cPrice;}), apply(cApply) {}
         shopItem(std::string cName, std::function<float()> cPrice, std::function<purchaseInfo()> cApply)
         : name(cName), price(cPrice), apply(cApply) {}
-        shopItem(std::string cName, std::function<int()> cPrice, std::function<purchaseInfo()> cApply)
-        : name(cName), price(cPrice), apply(cApply) {}
         
+        float getPrice()
+        {
+            return price();
+        }
+
+        void setPrice(float p) {price = [p](){return p;};}
+        void setPrice(std::function<float()> p) {price = p;}
+
         std::string name = "";
-        std::variant<float, int, std::function<float()>, std::function<int()>> price;
         int index;
         bool available = true;
         purchaseInfo purchase()
         {
-            float curPrice;
-            int priceIndex = price.index();
-            switch (priceIndex) 
-            {
-                case 0:
-                    curPrice = std::get<0>(price);
-                    break;
-                case 1:
-                    curPrice = std::get<1>(price);
-                    break;
-                case 2:
-                    curPrice = std::get<2>(price)();
-                    break;
-                case 3:
-                    curPrice = std::get<3>(price)();    
-                    break;
-                default:
-                    return;
-            }
+            float curPrice = getPrice();
+            
             if(tempRunningSaveData.points >= curPrice)
             {
                 purchaseInfo appliedData = apply();
@@ -70,6 +56,7 @@ class shopItem
         }
     private:
         std::function<purchaseInfo()> apply;
+        std::function<float()> price;
 
 };
 

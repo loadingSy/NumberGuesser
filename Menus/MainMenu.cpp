@@ -218,7 +218,7 @@ void endGame(bool victory, int rightAnswer)
     float tempPointsToChange;
     if(victory)
     {
-        tempPointsToChange = (tempRunningSaveData.guessRange * 0.2f - min(min(6.0f,tempRunningSaveData.chosenAttempts*0.1f),tempRunningSaveData.guessRange*0.2f));
+        tempPointsToChange = (tempRunningSaveData.guessRange * 0.6f - min(min(6.0f,tempRunningSaveData.chosenAttempts*0.1f),tempRunningSaveData.guessRange*0.2f));
     }
     else 
     {
