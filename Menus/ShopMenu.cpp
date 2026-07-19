@@ -17,9 +17,9 @@
 
 void initializeShop();
 
-inline string generateItemNameStructure(shopItem item)
+inline std::string generateItemNameStructure(shopItem item)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << item.name << " - " << item.getPrice() << "$";
     return ss.str();
 }
@@ -50,11 +50,11 @@ void managePurchase(shopItem item)
     {
         if(info.message.has_value())
         {
-            cout << info.message.value();
+            std::cout << info.message.value();
         }
         else
         {
-            cout << "Purchased Successfully for " << price << "$";
+            std::cout << "Purchased Successfully for " << price << "$";
             saveTempData(fileName, tempRunningSaveData);
         }
     }
@@ -62,11 +62,11 @@ void managePurchase(shopItem item)
     {
         if(info.message.has_value())
         {
-            cout << info.message.value();
+            std::cout << info.message.value();
         }
         else
         {
-            cout << "Failed for unknown reason\n";
+            std::cout << "Failed for unknown reason\n";
         }
     }
     shopTabs[item.index].name = generateItemNameStructure(item);

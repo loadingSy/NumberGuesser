@@ -6,7 +6,7 @@
 using namespace std;
 
 
-int saveVersion = 1;
+int saveVersion = 23;
 string fileName = "saveFile.txt";
 
 saveData tempRunningSaveData;

@@ -50,7 +50,7 @@ class shopItem
                     tempRunningSaveData.points -= curPrice;
                     return appliedData;
                 }
-                return {false, nullopt};
+                return {false, std::nullopt};
             }
             return {false, "Not enough Points"};
         }

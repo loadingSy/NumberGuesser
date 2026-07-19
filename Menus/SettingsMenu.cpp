@@ -9,43 +9,43 @@
 
 void attemptsFunction()
 {
-    stringstream inputSS;
+    std::stringstream inputSS;
     inputSS << "\nEnter Attempts Amount (max " << tempRunningSaveData.maxAttempts << ", current "<< tempRunningSaveData.chosenAttempts << "): ";
-    string inputQuestion = inputSS.str();
+    std::string inputQuestion = inputSS.str();
     int validatedInput = ask<int>(inputQuestion);
                     if(validatedInput < 1)
                     {
-                        cout << "\nInvalid input!\n";
+                        std::cout << "\nInvalid input!\n";
                         return;
                     }
                     if(validatedInput > tempRunningSaveData.maxAttempts)
                     {
-                        cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
+                        std::cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
                         validatedInput = tempRunningSaveData.maxAttempts;
                     }
-                        cout << "\nSet to: " << validatedInput << " Successfully!\n";
+                        std::cout << "\nSet to: " << validatedInput << " Successfully!\n";
                     tempRunningSaveData.chosenAttempts = validatedInput;
                     return;
 }
 
 void rangeFunction()
 {
-    stringstream inputSS;
+    std::stringstream inputSS;
     inputSS <<  "\nEnter Range 0-N, (current " <<  tempRunningSaveData.guessRange << ", min " << minGuessRange <<"): ";
-    string inputQuestion = inputSS.str();
+    std::string inputQuestion = inputSS.str();
     int validatedInput = ask<int>(inputQuestion);
     if(validatedInput < minGuessRange)
     {
         if(validatedInput > 0)
         {
-            cout << "\nInput lower than minimum: " << minGuessRange << "\n";
+            std::cout << "\nInput lower than minimum: " << minGuessRange << "\n";
             return;
         }
-        cout << "\nInvalid input!\n";
+        std::cout << "\nInvalid input!\n";
         return;
     }
 
-    cout << "\nSet to: " << validatedInput << " Successfully!\n";
+    std::cout << "\nSet to: " << validatedInput << " Successfully!\n";
     tempRunningSaveData.guessRange = validatedInput;
     return;
 }

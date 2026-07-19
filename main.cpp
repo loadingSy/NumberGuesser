@@ -6,12 +6,12 @@
 #include <stdexcept>
 #include <string>
 #include <random>
-#include "Menus/ShopMenu.h"
 #include "SaveLoad.h"
 #include "HelperFunctions.h"
 #include "Menus/Menu.h"
 #include "Menus/MainMenu.h"
-
+#include "Menus/ShopMenu.h"
+#include "Menus/GameLoop.h"
 
 using namespace std;
 
@@ -42,8 +42,10 @@ int main()
     }
     cout << "Press Enter to start: ";
     ShopMenu.initialize();
+    GameMenu.initialize();
     cin.get();
     MainMenu.open();
+    
     
 }
 

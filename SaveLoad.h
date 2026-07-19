@@ -1,11 +1,9 @@
 #pragma once
 
 #include <string>
+#include "GameSettings/SharedTypes.h"
 
-using namespace std;
-
-
-extern string fileName;
+extern std::string fileName;
 
 
 
@@ -23,10 +21,12 @@ struct saveData
     int chosenAttempts = 10;
     int guessRange = 30;
     int maxAttempts = 10;
+    DifficultyEnum difficulty = custom;
+    
 };
 
 extern saveData tempRunningSaveData;
 
-bool loadSaveData(const string& fileName, saveData& data);
+bool loadSaveData(const std::string& fileName, saveData& data);
 
-bool saveTempData(const string& fileName, const saveData& data);
+bool saveTempData(const std::string& fileName, const saveData& data);
