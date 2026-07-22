@@ -12,6 +12,7 @@
 #include "Menus/MainMenu.h"
 #include "Menus/ShopMenu.h"
 #include "Menus/GameLoop.h"
+#include "Menus/ThemesMenu.h"
 
 using namespace std;
 
@@ -43,6 +44,8 @@ int main()
     cout << "Press Enter to start: ";
     ShopMenu.initialize();
     GameMenu.initialize();
+    themesMenu.initialize();
+
     cin.get();
     MainMenu.open();
     

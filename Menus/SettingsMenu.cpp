@@ -1,11 +1,13 @@
 #include <iostream>
 #include <sstream>
+#include <string>
 #include <vector>
 #include "Menu.h"
 #include "../HelperFunctions.h"
 #include "../SaveLoad.h"
 #include "ShopMenu.h"
 #include "../GameSettings/GameSettings.h"
+#include "ThemesMenu.h"
 
 void attemptsFunction()
 {
@@ -50,22 +52,12 @@ void rangeFunction()
     return;
 }
 
+
 std::vector<menuTab> settingsMenuTabs = 
 {
     {"Attempts", attemptsFunction},
     {"Range", rangeFunction},
-    {"Idk", std::vector<menuTab>
-        {
-        {"Hey", std::vector<menuTab>
-            {
-                {"raur", attemptsFunction},
-                {"raur2",attemptsFunction}
-
-            }
-        },
-        {"Hey2",attemptsFunction},
-        }
-}
+    {"Themes", [](){themesMenu.open();}}
 };
 
 menu SettingsMenu("Settings", settingsMenuTabs);

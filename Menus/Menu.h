@@ -32,7 +32,7 @@ class menu
     menu(std::string cName, std::vector<menuTab>& tabs, bool cHasLeave = true, std::function<void()> cInitialize = [](){})
     : name(cName), hasLeave(cHasLeave), mainTabs(tabs), initialize(cInitialize){}
     int askTabs(const std::vector<menuTab>& tabs);
-    bool recurseTabs(const std::vector<menuTab> tabs);
+    bool recurseTabs(const std::vector<menuTab>& tabs);
     private:
     void mainLoop();
 };

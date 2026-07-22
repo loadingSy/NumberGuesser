@@ -40,7 +40,7 @@ int menu::askTabs(const std::vector<menuTab>& tabs)
     return chosenTab;
 }
 
-bool menu::recurseTabs(const std::vector<menuTab> tabs)
+bool menu::recurseTabs(const std::vector<menuTab>& tabs)
 {
     std::cout << "\n" << name << "\n";
     int chosenTab = askTabs(tabs)-1;

@@ -1,9 +1,11 @@
 #include "HelperFunctions.h"
+#include <_mingw_stat64.h>
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <random>
@@ -29,3 +31,75 @@ void returnError(std::string errorMessage)
     std::cout << "Error happened: " << errorMessage << "\n";
 }
 
+namespace Console {
+    std::string lastState = "\033[0m";
+    std::string currentState = "\033[0m";
+    std::string getStyleString(TextColor tColor, BgColor bColor)
+    {
+        if (tColor == TextColor::None && bColor == BgColor::None)
+        {
+            return "";
+        }
+
+        std::stringstream ss;
+        ss << "\033[";
+
+        if (tColor != TextColor::None)
+        {
+            ss << static_cast<int>(tColor);
+        }
+
+        if (bColor != BgColor::None)
+        {
+            if (tColor != TextColor::None)
+            {
+                ss << ";";
+            }
+            ss << static_cast<int>(bColor);
+        }
+
+        ss << "m";
+        return ss.str();
+    }
+    void setTerminalColors(TextColor tColor, BgColor bColor)
+    {
+        
+
+        lastState = currentState;
+
+        std::stringstream ss;
+        ss<<"\033[";
+        
+        if(tColor != TextColor::None)
+        {
+            ss << static_cast<int>(tColor);
+        }
+
+        if(bColor != BgColor::None)
+        {
+            if(tColor != TextColor::None)
+            {
+                ss << ";";
+            }
+            ss << static_cast<int>(bColor);
+        }
+        ss << "m";
+        currentState = ss.str();
+        std::cout << currentState;
+    }
+
+    void undoTerminalColor()
+    {
+        std::string lastLastState = lastState;
+        std::cout << lastState;
+        lastState = currentState;
+        currentState = lastLastState;
+    }
+    void resetTerminalColor()
+    {
+        std::stringstream ss;
+        ss << "\033[0m";
+        std::cout << ss.str();
+        currentState = ss.str();
+    }
+}
