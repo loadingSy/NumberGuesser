@@ -1,10 +1,9 @@
 #pragma once
 
-#include <array>
 #include <string>
 #include <vector>
 #include "GameSettings/SharedTypes.h"
-#include "HelperFunctions.h"
+#include "Theme.h"
 
 extern std::string fileName;
 
@@ -24,7 +23,7 @@ struct saveData
     int guessRange = 30;
     int maxAttempts = 10;
     DifficultyEnum difficulty = custom;
-    std::vector<Theme> ThemesOwned = {Themes::ClassicGreen,Themes::ModernDark,Themes::Sunset};
+    std::vector<Theme> ThemesOwned = {Themes::ClassicGreen,Themes::ModernDark,Themes::Sunset, Themes::Neon, Themes::Paper};
     Theme currentTheme = Themes::ModernDark;
     
 };

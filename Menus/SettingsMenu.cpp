@@ -17,15 +17,15 @@ void attemptsFunction()
     int validatedInput = ask<int>(inputQuestion);
                     if(validatedInput < 1)
                     {
-                        std::cout << "\nInvalid input!\n";
+                        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "\nInvalid input!\n";
                         return;
                     }
                     if(validatedInput > tempRunningSaveData.maxAttempts)
                     {
-                        std::cout << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
+                        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "\nExceeded max of " << tempRunningSaveData.maxAttempts << " Setting to " << tempRunningSaveData.maxAttempts << "\n";
                         validatedInput = tempRunningSaveData.maxAttempts;
                     }
-                        std::cout << "\nSet to: " << validatedInput << " Successfully!\n";
+                        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "\nSet to: " << validatedInput << " Successfully!\n";
                     tempRunningSaveData.chosenAttempts = validatedInput;
                     return;
 }
@@ -40,14 +40,14 @@ void rangeFunction()
     {
         if(validatedInput > 0)
         {
-            std::cout << "\nInput lower than minimum: " << minGuessRange << "\n";
+            std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "\nInput lower than minimum: " << minGuessRange << "\n";
             return;
         }
-        std::cout << "\nInvalid input!\n";
+        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "\nInvalid input!\n";
         return;
     }
 
-    std::cout << "\nSet to: " << validatedInput << " Successfully!\n";
+    std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "\nSet to: " << validatedInput << " Successfully!\n";
     tempRunningSaveData.guessRange = validatedInput;
     return;
 }

@@ -9,6 +9,8 @@
 #include <stdexcept>
 #include <string>
 #include <random>
+#include "SaveLoad.h"
+#include "Theme.h"
 
 
 void returnError(std::string errorMessage);
@@ -28,13 +30,13 @@ bool inRange(int num, int min, int max)
 
 void returnError(std::string errorMessage)
 {
-    std::cout << "Error happened: " << errorMessage << "\n";
+    std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "Error happened: " << errorMessage << "\n";
 }
 
 namespace Console {
     std::string lastState = "\033[0m";
     std::string currentState = "\033[0m";
-    std::string getStyleString(TextColor tColor, BgColor bColor)
+    std::string getStyleString(TextColor tColor, BgColor bColor, bool saveColor)
     {
         if (tColor == TextColor::None && bColor == BgColor::None)
         {
@@ -59,6 +61,7 @@ namespace Console {
         }
 
         ss << "m";
+        if(saveColor) currentState = ss.str();
         return ss.str();
     }
     void setTerminalColors(TextColor tColor, BgColor bColor)

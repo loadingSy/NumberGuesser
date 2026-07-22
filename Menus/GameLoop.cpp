@@ -71,8 +71,8 @@ void gameLoop()
     int startAttempts = (tempRunningSaveData.difficulty == 3 ? tempRunningSaveData.chosenAttempts : difficultySettings[tempRunningSaveData.difficulty][1]);
     int currentAttempts = startAttempts;
     int currentRange = (tempRunningSaveData.difficulty == 3 ? tempRunningSaveData.guessRange : difficultySettings[tempRunningSaveData.difficulty][0]);
-    std::cout << "Starting Game with:\n"
-    << currentAttempts << " tempRunningSaveData.maxAttempts\n"
+    std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.primaryColor) << "Starting Game with:\n"
+    << currentAttempts << " Attempts\n"
     << "0-" << currentRange << " range\n";
     bool continuePlaying = true;
     bool answeredCorrectly = false;
@@ -120,11 +120,11 @@ void triggerDefeat(int rightNumber, int userInput, std::array<int, 2> gameSettin
     {
         if (userInput > rightNumber) 
         {
-            typeOutput = "High!";
+            typeOutput = Console::getStyleString(tempRunningSaveData.currentTheme.highColor) + "High!";
         } 
         else 
         {
-            typeOutput = "Low!";
+            typeOutput = Console::getStyleString(tempRunningSaveData.currentTheme.lowColor) + "Low!";
         }
 
         
@@ -146,11 +146,12 @@ void triggerDefeat(int rightNumber, int userInput, std::array<int, 2> gameSettin
     {
         if (percentageDifference > lastDistance) 
         {
-            typeOutput = "Colder";
+
+            typeOutput = Console::getStyleString(tempRunningSaveData.currentTheme.highColor) + "Colder";
         }
         else 
         {
-            typeOutput = "Hotter";
+            typeOutput = Console::getStyleString(tempRunningSaveData.currentTheme.lowColor) + "Hotter";
         }
         
         int differenceInGuess = std::max(percentageDifference,lastDistance) - std::min(percentageDifference,lastDistance);
@@ -207,11 +208,11 @@ void endGame(bool victory, int rightAnswer, std::array<int, 2> gameSettings)
     if(victory)
     {
         tempRunningSaveData.timesWon++;
-        std::cout << "You won!, Rewarding \"" << pointsToChange << "\" Points\n";
+        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "You won!, Rewarding \"" << pointsToChange << "\" Points\n";
     }
     else {
         tempRunningSaveData.timesLost++;
-        std::cout << "You Lost it was " << rightAnswer << ", Charging \"" << pointsToChange << "\" Points\n" ;
+        std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "You Lost it was " << rightAnswer << ", Charging \"" << pointsToChange << "\" Points\n" ;
     }
 
     tempRunningSaveData.points += pointsToChange;

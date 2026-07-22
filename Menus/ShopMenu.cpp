@@ -50,11 +50,11 @@ void managePurchase(shopItem item)
     {
         if(info.message.has_value())
         {
-            std::cout << info.message.value();
+            std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.boldColor) << info.message.value();
         }
         else
         {
-            std::cout << "Purchased Successfully for " << price << "$";
+            std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Purchased Successfully for " << price << "$";
             saveTempData(fileName, tempRunningSaveData);
         }
     }
@@ -62,11 +62,11 @@ void managePurchase(shopItem item)
     {
         if(info.message.has_value())
         {
-            std::cout << info.message.value();
+            std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << info.message.value();
         }
         else
         {
-            std::cout << "Failed for unknown reason\n";
+            std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.negativeColor) << "Failed for unknown reason\n";
         }
     }
     shopTabs[item.index].name = generateItemNameStructure(item);

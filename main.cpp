@@ -13,6 +13,7 @@
 #include "Menus/ShopMenu.h"
 #include "Menus/GameLoop.h"
 #include "Menus/ThemesMenu.h"
+#include "Theme.h"
 
 using namespace std;
 
@@ -28,23 +29,26 @@ int main()
 {
     if (loadSaveData(fileName, tempRunningSaveData)) 
     {
-        cout << "Save data file loaded Successfully!\n";
+        cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Save data file loaded Successfully!\n";
     }
     else {
-        cout << "Save data file Not Found Creating new one...\n";
+        cout << Console::getStyleString(Themes::Paper.negativeColor) << "Save data file Not Found Creating new one...\n";
         if(saveTempData(fileName, tempRunningSaveData))
         {
-            cout << "Finished Saving successfully\n";
+            cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Finished Saving successfully\n";
         }
         else {
-            cout << "Saving Failed..\n";
+            cout << Console::getStyleString(Themes::Paper.positiveColor) << "Saving Failed..\n";
         }
         
     }
-    cout << "Press Enter to start: ";
+    
+    cout << Console::getStyleString(tempRunningSaveData.currentTheme.boldColor) << "Press Enter to start: ";
     ShopMenu.initialize();
     GameMenu.initialize();
     themesMenu.initialize();
+
+    Console::setTerminalColors(tempRunningSaveData.currentTheme.primaryColor,tempRunningSaveData.currentTheme.backgroundColor);
 
     cin.get();
     MainMenu.open();

@@ -4,7 +4,6 @@
 #include <array>
 #include <vector>
 
-DifficultyEnum gameDifficulty = tempRunningSaveData.difficulty;
 float basePenaltyValue = 5;
 int minGuessRange = 10;
 int lastDistance = -1;
