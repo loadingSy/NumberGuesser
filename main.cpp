@@ -26,7 +26,7 @@ using namespace std;
 
 
 int main()
-{
+{   
     if (loadSaveData(fileName, tempRunningSaveData)) 
     {
         cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Save data file loaded Successfully!\n";

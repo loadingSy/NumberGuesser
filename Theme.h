@@ -20,7 +20,7 @@ struct Theme
 };
 
 namespace Themes {
-    const Theme ModernDark = {
+    inline const Theme ModernDark = {
         "Modern Dark",
         Console::TextColor::White,
         Console::TextColor::Yellow,
@@ -32,7 +32,7 @@ namespace Themes {
         Console::TextColor::Cyan
     };
 
-    const Theme ClassicGreen = {
+    inline const Theme ClassicGreen = {
         "Classic Green",
         Console::TextColor::Green,
         Console::TextColor::White,
@@ -44,7 +44,7 @@ namespace Themes {
         Console::TextColor::Green
     };
 
-    const Theme Sunset = {
+    inline const Theme Sunset = {
         "SunSet",
         Console::TextColor::Yellow,
         Console::TextColor::White,
@@ -56,7 +56,7 @@ namespace Themes {
         Console::TextColor::Yellow
     };
 
-    const Theme Paper = {
+    inline const Theme Paper = {
         "Paper",
         Console::TextColor::Black,
         Console::TextColor::Blue,
@@ -68,7 +68,7 @@ namespace Themes {
         Console::TextColor::Black
     };
 
-    const Theme Neon = {
+    inline const Theme Neon = {
         "Neon",
         Console::TextColor::Cyan,
         Console::TextColor::Yellow,

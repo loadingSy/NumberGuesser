@@ -4,6 +4,9 @@
 #include <vector>
 #include "GameSettings/SharedTypes.h"
 #include "Theme.h"
+#include "include/json.hpp"
+
+using json = nlohmann::json;
 
 extern std::string fileName;
 
@@ -33,3 +36,12 @@ extern saveData tempRunningSaveData;
 bool loadSaveData(const std::string& fileName, saveData& data);
 
 bool saveTempData(const std::string& fileName, const saveData& data);
+
+
+namespace Save 
+{
+    template <typename T>
+    json dataToJson(const T& object);
+    template <typename T>
+    void jsonToData(const json& object, T& output);
+}

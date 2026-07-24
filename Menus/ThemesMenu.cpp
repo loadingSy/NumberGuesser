@@ -51,6 +51,8 @@ void previewTheme(const Theme& currTheme)
 void applyTheme(const Theme& currTheme)
 {
     tempRunningSaveData.currentTheme = currTheme;
+    saveTempData(fileName, tempRunningSaveData);
+    std::cout << Console::getStyleString(Console::TextColor::None,currTheme.backgroundColor);
 }
 
 void themesInitialize()

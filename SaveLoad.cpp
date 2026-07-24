@@ -1,165 +1,192 @@
-#include <string>
-#include <iostream>
+#include "GameSettings/SharedTypes.h"
+#include "include/json.hpp"
 #include <fstream>
-#include <iomanip>
+#include <iostream>
+#include <string>
+#include <vector>
 #include "SaveLoad.h"
-#include "Theme.h"
 
-using namespace std;
+using json = nlohmann::json;
 
-
-int saveVersion = 23444336;
-string fileName = "saveFile.txt";
-
+std::string fileName = "saveFile.txt";
 saveData tempRunningSaveData;
 
-namespace
+namespace Save 
 {
-    bool readTheme(std::istream& in, Theme& theme)
-    {
-        int primary = 0;
-        int bold = 0;
-        int negative = 0;
-        int positive = 0;
-        int low = 0;
-        int high = 0;
-        int background = 0;
-        int prompt = 0;
 
-        return static_cast<bool>(
-            in >> std::quoted(theme.name)
-               >> primary
-               >> bold
-               >> negative
-               >> positive
-               >> low
-               >> high
-               >> background
-               >> prompt
-        ) && (
-            theme.primaryColor = static_cast<Console::TextColor>(primary),
-            theme.boldColor = static_cast<Console::TextColor>(bold),
-            theme.negativeColor = static_cast<Console::TextColor>(negative),
-            theme.positiveColor = static_cast<Console::TextColor>(positive),
-            theme.lowColor = static_cast<Console::TextColor>(low),
-            theme.highColor = static_cast<Console::TextColor>(high),
-            theme.backgroundColor = static_cast<Console::BgColor>(background),
-            theme.promptColor = static_cast<Console::TextColor>(prompt),
-            true
-        );
+    template <typename T>
+    json dataToJson(const T& object)
+    {
+        return object;
     }
 
-    void writeTheme(std::ostream& out, const Theme& theme)
+    template<>
+    json dataToJson<Console::TextColor>(const Console::TextColor& object)
     {
-        out << std::quoted(theme.name) << ' '
-            << static_cast<int>(theme.primaryColor) << ' '
-            << static_cast<int>(theme.boldColor) << ' '
-            << static_cast<int>(theme.negativeColor) << ' '
-            << static_cast<int>(theme.positiveColor) << ' '
-            << static_cast<int>(theme.lowColor) << ' '
-            << static_cast<int>(theme.highColor) << ' '
-            << static_cast<int>(theme.backgroundColor) << ' '
-            << static_cast<int>(theme.promptColor) << '\n';
+        return static_cast<int>(object);
+    }
+
+    template<>
+    json dataToJson<Console::BgColor>(const Console::BgColor& object)
+    {
+        return static_cast<int>(object);
+    }
+
+    template<>
+    json dataToJson<Theme>(const Theme& object)
+    {
+        return json
+        {
+            {"name", object.name},
+            {"primaryColor", dataToJson(object.primaryColor)},
+            {"boldColor", dataToJson(object.boldColor)},
+            {"negativeColor", dataToJson(object.negativeColor)},
+            {"positiveColor", dataToJson(object.positiveColor)},
+            {"lowColor", dataToJson(object.lowColor)},
+            {"highColor", dataToJson(object.highColor)},
+            {"backgroundColor", dataToJson(object.backgroundColor)},
+            {"promptColor", dataToJson(object.promptColor)}
+        };
+    }
+
+    template <typename T>
+    json dataToJson(const std::vector<T>& vec)
+    {
+        json jsonArray = json::array();
+        for (const auto& item : vec)
+        {
+            jsonArray.push_back(dataToJson(item));
+        }
+        return jsonArray;
+    }
+
+    template<>
+    json dataToJson<saveData>(const saveData& object)
+    {
+        return json
+        {
+            {"gameLoopsPlayed", object.gameLoopsPlayed},
+            {"failedGuessAttempts", object.failedGuessAttempts},
+            {"successfullGuessAttempts", object.successfullGuessAttempts},
+            {"timesWon", object.timesWon},
+            {"timesLost", object.timesLost},
+            {"dumbInputs", object.dumbInputs},
+            {"points", object.points},
+            {"pointsGainMultiplier", object.pointsGainMultiplier},
+            {"pointsDiscountMultiplier", object.pointsDiscountMultiplier},
+            {"chosenAttempts", object.chosenAttempts},
+            {"guessRange", object.guessRange},
+            {"maxAttempts", object.maxAttempts},
+            {"difficulty", static_cast<int>(object.difficulty)},
+            {"ThemesOwned", dataToJson(object.ThemesOwned)},
+            {"currentTheme", dataToJson(object.currentTheme)}
+        };
+    }
+
+    template <typename T>
+    void jsonToData(const json& j, T& output)
+    {
+        output = j.get<T>();
+    }
+
+    template<>
+    void jsonToData<Console::TextColor>(const json& j, Console::TextColor& output)
+    {
+        output = static_cast<Console::TextColor>(j.get<int>());
+    }
+
+    template<>
+    void jsonToData<Console::BgColor>(const json& j, Console::BgColor& output)
+    {
+        output = static_cast<Console::BgColor>(j.get<int>());
+    }
+
+    template<>
+    void jsonToData<Theme>(const json& j, Theme& output)
+    {
+        output.name = j.value("name", "");
+        jsonToData(j["primaryColor"], output.primaryColor);
+        jsonToData(j["boldColor"], output.boldColor);
+        jsonToData(j["negativeColor"], output.negativeColor);
+        jsonToData(j["positiveColor"], output.positiveColor);
+        jsonToData(j["lowColor"], output.lowColor);
+        jsonToData(j["highColor"], output.highColor);
+        jsonToData(j["backgroundColor"], output.backgroundColor);
+        jsonToData(j["promptColor"], output.promptColor);
+    }
+
+    template <typename T>
+    void jsonToData(const json& j, std::vector<T>& vec)
+    {
+        vec.clear();
+        if (j.is_array())
+        {
+            for (const auto& item : j)
+            {
+                T element;
+                jsonToData(item, element);
+                vec.push_back(element);
+            }
+        }
+    }
+
+    template<>
+    void jsonToData<saveData>(const json& j, saveData& output)
+    {
+        output.gameLoopsPlayed = j.value("gameLoopsPlayed", 0);
+        output.failedGuessAttempts = j.value("failedGuessAttempts", 0);
+        output.successfullGuessAttempts = j.value("successfullGuessAttempts", 0);
+        output.timesWon = j.value("timesWon", 0);
+        output.timesLost = j.value("timesLost", 0);
+        output.dumbInputs = j.value("dumbInputs", 0);
+        output.points = j.value("points", 0.0f);
+        output.pointsGainMultiplier = j.value("pointsGainMultiplier", 1.0f);
+        output.pointsDiscountMultiplier = j.value("pointsDiscountMultiplier", 1.0f);
+        output.chosenAttempts = j.value("chosenAttempts", 10);
+        output.guessRange = j.value("guessRange", 30);
+        output.maxAttempts = j.value("maxAttempts", 10);
+        
+        if (j.contains("difficulty"))
+        {
+            output.difficulty = static_cast<DifficultyEnum>(j["difficulty"].get<int>());
+        }
+
+        if (j.contains("ThemesOwned"))
+        {
+            jsonToData(j["ThemesOwned"], output.ThemesOwned);
+        }
+
+        if (j.contains("currentTheme"))
+        {
+            jsonToData(j["currentTheme"], output.currentTheme);
+        }
     }
 }
 
-bool loadSaveData(const string& fileName, saveData& data)
+bool loadSaveData(const std::string& fileName, saveData& data)
 {
-    ifstream file(fileName);
-
-    if(!file.is_open()) return false;
-
-    int loadedVersion = 0;
-    file >> loadedVersion;
-    if(!file)
+    std::ifstream file(fileName);
+    if (!file.is_open())
     {
-        data = saveData();
-        return false;
-    }
-    
-    if(loadedVersion != saveVersion)
-    {
-        cout << "Outdated save file detected! Resetting to defaults.\n";
-        data = saveData();
-        return false;
-    }
-    
-    int difficultyValue = 0;
-    size_t themeCount = 0;
-
-    file >> data.gameLoopsPlayed
-         >> data.failedGuessAttempts
-         >> data.successfullGuessAttempts
-         >> data.timesWon
-         >> data.timesLost
-         >> data.dumbInputs
-         >> data.points
-         >> data.pointsGainMultiplier
-         >> data.pointsDiscountMultiplier
-         >> data.chosenAttempts
-         >> data.guessRange
-         >> data.maxAttempts
-         >> difficultyValue
-         >> themeCount;
-
-    if(!file)
-    {
-        data = saveData();
         return false;
     }
 
-    data.difficulty = static_cast<DifficultyEnum>(difficultyValue);
-    data.ThemesOwned.clear();
-    data.ThemesOwned.reserve(themeCount);
+    json j;
+    file >> j;
 
-    for(size_t i = 0; i < themeCount; ++i)
-    {
-        Theme theme;
-        if(!readTheme(file, theme))
-        {
-            data = saveData();
-            return false;
-        }
-        data.ThemesOwned.push_back(theme);
-    }
-
-    if(!readTheme(file, data.currentTheme))
-    {
-        data = saveData();
-        return false;
-    }
-
+    Save::jsonToData(j, data);
     return true;
 }
 
-bool saveTempData(const string& fileName, const saveData& data)
+bool saveTempData(const std::string& fileName, const saveData& data)
 {
-    ofstream file(fileName);
-
-    if(!file.is_open()) return false;
-
-    file << saveVersion << '\n'
-         << data.gameLoopsPlayed << ' '
-         << data.failedGuessAttempts << ' '
-         << data.successfullGuessAttempts << ' '
-         << data.timesWon << ' '
-         << data.timesLost << ' '
-         << data.dumbInputs << ' '
-         << data.points << ' '
-         << data.pointsGainMultiplier << ' '
-         << data.pointsDiscountMultiplier << ' '
-         << data.chosenAttempts << ' '
-         << data.guessRange << ' '
-         << data.maxAttempts << ' '
-         << static_cast<int>(data.difficulty) << ' '
-         << data.ThemesOwned.size() << '\n';
-
-    for(const auto& theme : data.ThemesOwned)
+    std::ofstream file(fileName);
+    if (!file.is_open())
     {
-        writeTheme(file, theme);
+        return false;
     }
 
-    writeTheme(file, data.currentTheme);
-
+    json j = Save::dataToJson(data);
+    file << j.dump(4);
     return true;
 }
