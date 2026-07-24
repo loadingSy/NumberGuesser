@@ -55,7 +55,7 @@ void managePurchase(shopItem item)
         else
         {
             std::cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Purchased Successfully for " << price << "$";
-            saveTempData(fileName, tempRunningSaveData);
+            saveTempData(saveFileName, tempRunningSaveData);
         }
     }
     else 

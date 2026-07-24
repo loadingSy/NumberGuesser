@@ -1,0 +1,83 @@
+{
+    "ThemesOwned": [
+        {
+            "backgroundColor": 40,
+            "boldColor": 37,
+            "highColor": 35,
+            "lowColor": 36,
+            "name": "Classic Green",
+            "negativeColor": 31,
+            "positiveColor": 33,
+            "primaryColor": 32,
+            "promptColor": 32
+        },
+        {
+            "backgroundColor": 40,
+            "boldColor": 33,
+            "highColor": 31,
+            "lowColor": 34,
+            "name": "Modern Dark",
+            "negativeColor": 31,
+            "positiveColor": 32,
+            "primaryColor": 37,
+            "promptColor": 36
+        },
+        {
+            "backgroundColor": 40,
+            "boldColor": 37,
+            "highColor": 35,
+            "lowColor": 36,
+            "name": "SunSet",
+            "negativeColor": 31,
+            "positiveColor": 32,
+            "primaryColor": 33,
+            "promptColor": 33
+        },
+        {
+            "backgroundColor": 40,
+            "boldColor": 33,
+            "highColor": 35,
+            "lowColor": 34,
+            "name": "Neon",
+            "negativeColor": 31,
+            "positiveColor": 32,
+            "primaryColor": 36,
+            "promptColor": 35
+        },
+        {
+            "backgroundColor": 47,
+            "boldColor": 34,
+            "highColor": 31,
+            "lowColor": 34,
+            "name": "Paper",
+            "negativeColor": 31,
+            "positiveColor": 32,
+            "primaryColor": 30,
+            "promptColor": 30
+        }
+    ],
+    "chosenAttempts": 10,
+    "currentTheme": {
+        "backgroundColor": 40,
+        "boldColor": 37,
+        "highColor": 35,
+        "lowColor": 34,
+        "name": "cyberpunk",
+        "negativeColor": 31,
+        "positiveColor": 32,
+        "primaryColor": 36,
+        "promptColor": 35
+    },
+    "difficulty": 2,
+    "dumbInputs": 0,
+    "failedGuessAttempts": 18,
+    "gameLoopsPlayed": 5,
+    "guessRange": 30,
+    "maxAttempts": 10,
+    "points": 86.45000457763672,
+    "pointsDiscountMultiplier": 1.0,
+    "pointsGainMultiplier": 1.0,
+    "successfullGuessAttempts": 4,
+    "timesLost": 1,
+    "timesWon": 4
+}

@@ -51,7 +51,7 @@ std::vector<menuTab> gameTabs =
 inline void setDifficulty(int diff)
 {
     tempRunningSaveData.difficulty = static_cast<DifficultyEnum>(diff);
-    saveTempData(fileName, tempRunningSaveData);
+    saveTempData(saveFileName, tempRunningSaveData);
     gameTabs[1].name = "Change Preset - "+getDifficulty();
 }
 
@@ -216,5 +216,5 @@ void endGame(bool victory, int rightAnswer, std::array<int, 2> gameSettings)
     }
 
     tempRunningSaveData.points += pointsToChange;
-    saveTempData(fileName, tempRunningSaveData);
+    saveTempData(saveFileName, tempRunningSaveData);
 }

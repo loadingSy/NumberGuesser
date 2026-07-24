@@ -46,7 +46,7 @@ void resetStats()
     if(playerInput == "fffddd")
     {
         tempRunningSaveData = saveData();
-        saveTempData(fileName, tempRunningSaveData);
+        saveTempData(saveFileName, tempRunningSaveData);
         std::cout << "\n Reset Successfully!";
     }
 }

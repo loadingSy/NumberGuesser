@@ -2,6 +2,7 @@
 
 #include <string>
 #include "ConsoleTypes.h"
+#include <vector>
 
 struct Theme
 {
@@ -19,7 +20,13 @@ struct Theme
     Console::TextColor promptColor;
 };
 
+
+
 namespace Themes {
+    extern std::vector<Theme> ExternThemes;
+
+    void loadExternThemes();
+    
     inline const Theme ModernDark = {
         "Modern Dark",
         Console::TextColor::White,

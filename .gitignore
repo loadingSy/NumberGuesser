@@ -7,3 +7,5 @@ build/
 *.exe
 
 saveFile.txt
+SaveData/saveFile.json
+SaveData/Themes.json

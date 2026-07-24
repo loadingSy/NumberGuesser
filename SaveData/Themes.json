@@ -1,0 +1,68 @@
+[
+    {
+        "name": "cyberpunk",
+        "backgroundColor": 40,
+        "primaryColor": 36,
+        "boldColor": 37,
+        "promptColor": 35,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 35,
+        "lowColor": 34
+    },
+    {
+        "name": "synthwave",
+        "backgroundColor": 40,
+        "primaryColor": 35,
+        "boldColor": 33,
+        "promptColor": 36,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 33,
+        "lowColor": 34
+    },
+    {
+        "name": "matrix",
+        "backgroundColor": 40,
+        "primaryColor": 32,
+        "boldColor": 37,
+        "promptColor": 32,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 33,
+        "lowColor": 30
+    },
+    {
+        "name": "monochrome light",
+        "backgroundColor": 47,
+        "primaryColor": 30,
+        "boldColor": 30,
+        "promptColor": 34,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 35,
+        "lowColor": 36
+    },
+    {
+        "name": "ocean navy",
+        "backgroundColor": 44,
+        "primaryColor": 37,
+        "boldColor": 33,
+        "promptColor": 36,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 35,
+        "lowColor": 30
+    },
+    {
+        "name": "amber terminal",
+        "backgroundColor": 40,
+        "primaryColor": 33,
+        "boldColor": 37,
+        "promptColor": 33,
+        "positiveColor": 32,
+        "negativeColor": 31,
+        "highColor": 35,
+        "lowColor": 30
+    }
+]

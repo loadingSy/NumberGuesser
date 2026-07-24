@@ -27,13 +27,13 @@ using namespace std;
 
 int main()
 {   
-    if (loadSaveData(fileName, tempRunningSaveData)) 
+    if (loadSaveData(saveFileName, tempRunningSaveData)) 
     {
         cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Save data file loaded Successfully!\n";
     }
     else {
         cout << Console::getStyleString(Themes::Paper.negativeColor) << "Save data file Not Found Creating new one...\n";
-        if(saveTempData(fileName, tempRunningSaveData))
+        if(saveTempData(saveFileName, tempRunningSaveData))
         {
             cout << Console::getStyleString(tempRunningSaveData.currentTheme.positiveColor) << "Finished Saving successfully\n";
         }
@@ -45,6 +45,7 @@ int main()
     
     cout << Console::getStyleString(tempRunningSaveData.currentTheme.boldColor) << "Press Enter to start: ";
     ShopMenu.initialize();
+    Themes::loadExternThemes();
     GameMenu.initialize();
     themesMenu.initialize();
 

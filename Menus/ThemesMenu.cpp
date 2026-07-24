@@ -51,7 +51,7 @@ void previewTheme(const Theme& currTheme)
 void applyTheme(const Theme& currTheme)
 {
     tempRunningSaveData.currentTheme = currTheme;
-    saveTempData(fileName, tempRunningSaveData);
+    saveTempData(saveFileName, tempRunningSaveData);
     std::cout << Console::getStyleString(Console::TextColor::None,currTheme.backgroundColor);
 }
 
@@ -72,6 +72,20 @@ void themesInitialize()
             )
         );
     }
-    saveTempData(fileName, tempRunningSaveData);
+    Themes::loadExternThemes();
+    for (size_t i = 0; i < Themes::ExternThemes.size(); i++)
+    {
+        auto currTheme = Themes::ExternThemes[i];
+        themesTabs.push_back(
+            menuTab(
+                currTheme.name+"(Extern)",
+                std::vector<menuTab>{
+                    menuTab("Preview", [currTheme](){ previewTheme(currTheme); }),
+                    menuTab("Apply",   [currTheme](){ applyTheme(currTheme);   })
+                }
+            )
+        );
+    }
+    saveTempData(saveFileName, tempRunningSaveData);
 }
 
